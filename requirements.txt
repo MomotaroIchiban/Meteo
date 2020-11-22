@@ -1,0 +1,8 @@
+connexion[swagger-ui]
+flask
+flask-marshmallow
+flask_sqlalchemy
+marshmallow
+marshmallow-sqlalchemy
+requests
+schedule

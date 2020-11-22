@@ -1,0 +1,89 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+# Paths supported by the server application
+paths:
+  /meteo:
+    get:
+      operationId: "meteo.read_all"
+      tags:
+        - "Meteo"
+      summary: ""
+      description: ""
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "array"
+            items:
+              properties:
+                city:
+                  type: "string"
+                dt:
+                  type: "string"
+                temp:
+                  type: "string"
+                feels_like:
+                  type: "string"
+                temp_min:
+                  type: "string"
+                temp_max:
+                  type: "string"
+                pressure:
+                  type: "string"
+                sea_level:
+                  type: "string"
+                grnd_level:
+                  type: "string"
+                humidity:
+                  type: "string"
+
+  /meteo/{city}:
+    get:
+      operationId: "meteo.read_one"
+      tags:
+        - "Meteo"
+      summary: ""
+      description: ""
+      parameters:
+        - name: city
+          in: path
+          description: city
+          type: string
+          required: True
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "array"
+            items:
+              properties:
+                city:
+                  type: "string"
+                dt:
+                  type: "string"
+                temp:
+                  type: "string"
+                feels_like:
+                  type: "string"
+                temp_min:
+                  type: "string"
+                temp_max:
+                  type: "string"
+                pressure:
+                  type: "string"
+                sea_level:
+                  type: "string"
+                grnd_level:
+                  type: "string"
+                humidity:
+                  type: "string"
