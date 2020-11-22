@@ -3,15 +3,10 @@ import requests
 
 from config import db
 from models import Meteo
-from settings import (
-    APIKEY,
-    WEATHER_API,
-    CITIES,
-)
+from settings import APIKEY, WEATHER_API, CITIES, LOG_FORMAT
 
-FORMAT = "%(asctime)-15s %(message)s"
-logging.basicConfig(format=FORMAT)
-logger = logging.getLogger("meteo")
+logging.basicConfig(filename="fetcher.log", format=LOG_FORMAT)
+logger = logging.getLogger("fetcher")
 
 
 def job():

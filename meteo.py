@@ -1,3 +1,4 @@
+import logging
 from flask import (
     make_response,
     abort,
@@ -6,6 +7,10 @@ from models import (
     Meteo,
     MeteoSchema,
 )
+from settings import LOG_FORMAT
+
+logging.basicConfig(filename="meteo.log", format=LOG_FORMAT)
+logger = logging.getLogger("meteo")
 
 
 def read_all():
@@ -21,6 +26,7 @@ def read_all():
         # Serialize data
         meteo_schema = MeteoSchema(many=True)
     except Exception as e:
+        logger.warning(e)
         return []
     else:
         return meteo_schema.dump(entries)
@@ -39,6 +45,7 @@ def read_one(city):
         # Serialize data
         meteo_schema = MeteoSchema(many=True)
     except Exception as e:
+        logger.warning(e)
         return []
     else:
         return meteo_schema.dump(entries)
