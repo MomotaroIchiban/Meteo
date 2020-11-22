@@ -15,13 +15,16 @@ def read_all():
     :return: JSON list of Meteo records
     """
 
-    entries = Meteo.query \
-            .order_by(Meteo.dt) \
-            .all()
+    try:
+        entries = Meteo.query.order_by(Meteo.dt).all()
 
-    # Serialize data
-    meteo_schema = MeteoSchema(many=True)
-    return meteo_schema.dump(entries)
+        # Serialize data
+        meteo_schema = MeteoSchema(many=True)
+    except Exception as e:
+        return []
+    else:
+        return meteo_schema.dump(entries)
+
 
 def read_one(city):
     """
@@ -31,9 +34,11 @@ def read_one(city):
     :return:   all meteo entries for specified city
     """
 
-    entries = Meteo.query.filter(Meteo.city==city).order_by(Meteo.dt)
-
-    # Serialize data
-    meteo_schema = MeteoSchema(many=True)
-    return meteo_schema.dump(entries)
-
+    try:
+        entries = Meteo.query.filter(Meteo.city == city).order_by(Meteo.dt)
+        # Serialize data
+        meteo_schema = MeteoSchema(many=True)
+    except Exception as e:
+        return []
+    else:
+        return meteo_schema.dump(entries)
