@@ -1,8 +1,8 @@
 swagger: "2.0"
 info:
-  description: This is the swagger file that goes with our server code
-  version: "1.0.0"
-  title: Swagger REST Article
+  description: This page describes the available APIs for the Meteo service.  The APIs can also be used directly from here.
+  version: "1.0.1"
+  title: REST API Description
 consumes:
   - "application/json"
 produces:
@@ -17,8 +17,8 @@ paths:
       operationId: "meteo.read_all"
       tags:
         - "Meteo"
-      summary: ""
-      description: ""
+      summary: "Returns all weather entries"
+      description: "Returns all weather entries"
       responses:
         200:
           description: "Success"
@@ -52,8 +52,8 @@ paths:
       operationId: "meteo.read_one"
       tags:
         - "Meteo"
-      summary: ""
-      description: ""
+      summary: "Returns weather entries for one city"
+      description: "Returns weather entries for a given city"
       parameters:
         - name: city
           in: path
@@ -87,3 +87,5 @@ paths:
                   type: "string"
                 humidity:
                   type: "string"
+        404:
+          description: "Ressource not found"
