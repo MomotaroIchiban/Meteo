@@ -7,7 +7,7 @@ from models import (
     Meteo,
     MeteoSchema,
 )
-from settings import LOG_FORMAT
+from settings import LOG_FORMAT, CITIES
 
 logging.basicConfig(filename="meteo.log", format=LOG_FORMAT)
 logger = logging.getLogger("meteo")
@@ -39,6 +39,9 @@ def read_one(city):
     :param id: city id
     :return:   all meteo entries for specified city
     """
+
+    if city not in CITIES:
+        abort(404, "This city is not included in the data")
 
     try:
         entries = Meteo.query.filter(Meteo.city == city).order_by(Meteo.dt)
